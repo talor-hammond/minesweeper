@@ -1,20 +1,81 @@
 document.addEventListener('DOMContentLoaded', startGame)
 
 // Define your `board` object here!
-var board = {
+var board = { // 3 x 3 board:
 
   cells: [
-    {row: 0, col: 0, isMine: false, hidden: true},
-    {row: 0, col: 1, isMine: true, hidden: true},
-    {row: 1, col: 0, isMine: false, hidden: true},
-    {row: 1, col: 1, isMine: true, hidden: true}
+    {
+      row: 0,
+      col: 0,
+      isMine: false,
+      hidden: true,
+    },
+    {
+      row: 0,
+      col: 1,
+      isMine: true,
+      hidden: true
+    },
+    {
+      row: 0,
+      col: 2,
+      isMine: false,
+      hidden: true
+    },
+    {
+      row: 1,
+      col: 0,
+      isMine: true,
+      hidden: true
+    },
+    {
+      row: 1,
+      col: 1,
+      isMine: true,
+      hidden: true
+    },
+    {
+      row: 1,
+      col: 2,
+      isMine: false,
+      hidden: true
+    },
+    {
+      row: 2,
+      col: 0,
+      isMine: true,
+      hidden: true
+    },
+    {
+      row: 2,
+      col: 1,
+      isMine: false,
+      hidden: true
+    },
+    {
+      row: 2,
+      col: 2,
+      isMine: false,
+      hidden: true
+    },
   ]
 
 }
 
 function startGame () {
+
+  // looping through the contents of board.cells...
+  for (var i = 0; i < board.cells.length; i++) {
+
+    // console.log(board.cells[i].row)
+    board.cells[i].surroundingMines = countSurroundingMines(board.cells[i]) 
+    console.log((board.cells[i].surroundingMines))
+
+  }
+
   // Don't remove this function call: it makes the game work!
   lib.initBoard()
+
 }
 
 // Define this function to look for a win condition:
@@ -37,5 +98,20 @@ function checkForWin () {
 // It will return cell objects in an array. You should loop through 
 // them, counting the number of times `cell.isMine` is true.
 function countSurroundingMines (cell) {
-}
 
+  var surroundingCells = lib.getSurroundingCells(cell.row, cell.col)
+
+  var count = 0 // initialising a counter 
+
+  for (var i = 0; i < surroundingCells.length; i++) {
+
+    if (surroundingCells[i].isMine === true) { // iterating through the surroundingCells and checking the isMine property...
+      count++
+    }
+
+  }
+
+  return count
+
+}
+  
