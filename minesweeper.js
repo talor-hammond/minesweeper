@@ -147,4 +147,7 @@ function countSurroundingMines (cell) {
   return count
 
 }
+
+// reset the board; clicking the "Reset" button:
+
   
