@@ -1,77 +1,49 @@
 document.addEventListener('DOMContentLoaded', startGame)
 
 // Define your `board` object here!
-var board = { // 3 x 3 board:
+var board = {
+  cells: []
+}
+var gridSize = 6 // default; 6x6 grid, will look to change w pickers if get enough time
 
-  cells: [
-    {
-      row: 0,
-      col: 0,
-      isMine: false,
-      isMarked: false,
-      hidden: true,
-    },
-    {
-      row: 0,
-      col: 1,
-      isMine: true,
-      isMarked: false,
-      hidden: true
-    },
-    {
-      row: 0,
-      col: 2,
-      isMine: false,
-      isMarked: false,
-      hidden: true
-    },
-    {
-      row: 1,
-      col: 0,
-      isMine: true,
-      isMarked: false,
-      hidden: true
-    },
-    {
-      row: 1,
-      col: 1,
-      isMine: true,
-      isMarked: false,
-      hidden: true
-    },
-    {
-      row: 1,
-      col: 2,
-      isMine: false,
-      isMarked: false,
-      hidden: true
-    },
-    {
-      row: 2,
-      col: 0,
-      isMine: true,
-      isMarked: false,
-      hidden: true
-    },
-    {
-      row: 2,
-      col: 1,
-      isMine: false,
-      isMarked: false,
-      hidden: true
-    },
-    {
-      row: 2,
-      col: 2,
-      isMine: false,
-      isMarked: false,
-      hidden: true
-    },
-  ]
+// Initialising cells to the board.cells object, based off gridSize (where gridSize should ideally be dynamic - TODO)
+function initCells() {
+
+  for (var x = 0; x < gridSize; x++) { // for every cell along x-axis...
+    
+    for (var y = 0; y < gridSize; y++) { // and for the y-axis for each x cell...
+
+      board.cells.push({ // "pushing" properties onto each cells object
+        row: x,
+        col: y,
+        isMine: false, // TODO: iterate random 'isMine: true' onto objects
+        isMarked: false,
+        hidden: true
+      })
+
+    }
+
+  }
 
 }
 
+// Iterating random mines into grid / cells:
+function initMines() {
+
+  for (var i = 0; i < Math.floor(board.cells.length / 3); i++) { // iterating through a maximum of 1/3 of the board.cells array
+
+    board.cells[Math.floor(Math.random() * board.cells.length)].isMine = true // choosing a random cell from the array...
+
+  }
+
+}
+
+
 function startGame () {
+
+  // initialising gameboard:
+  initCells()
+  initMines()
 
   // looping through the contents of board.cells...
   for (var i = 0; i < board.cells.length; i++) {
@@ -149,5 +121,23 @@ function countSurroundingMines (cell) {
 }
 
 // reset the board; clicking the "Reset" button:
+function reset() {
+
+  document.location.reload()
+
+}
+
+// TODO - re-initialising the board (w/o refreshing):
+// function reset() {
+
+//   var board = {
+//     cells: []
+//   }
+
+//   document.getElementsByClassName('board')[0].innerHTML = '' // making the innerHTML of the 'board' class an empty string; 'refreshing'
+
+//   startGame()
+
+// }
 
   

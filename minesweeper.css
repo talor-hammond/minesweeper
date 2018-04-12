@@ -61,24 +61,22 @@ div.marked, div.marked:hover {
   background: no-repeat center/60% url("images/mark.svg") deepskyblue;
 }
 
-/* HEADER */
-header {
-  width: 100%;
-  background-color: grey;
-}
-
-.innerHeader {
-  width: 100%;
+button {
   background-color: lightslategray;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  margin-top: 26px;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition: all .22s
 }
 
-.title {
-  color: whitesmoke;
-  font-family: sans-serif, Arial;
-  font-size: 3rem;
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: .4em;
+button:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
 }
 
 /* FOOTER */
